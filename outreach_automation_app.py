@@ -45,14 +45,19 @@ by_who = ""
 
 greet_message_dict = {
     "Ken": "Hi, [firstname]! I am Ken, the co-founder at Esger, an NYC startup. We just raised $250k+ and support from top institutions like Cornell, Microsoft, and ERA. As we are using AI to tackle the heart of sustainability issues, the supply chain, I love to connect with experts in the field (like you!).",
+    "Aparajita":"Hi [firstname],I am the cofounder of Esger, an early stage Supply Chain Tech startup. We have raised $250k+ from renowned institutions like Cornell and ERA. We are currently in the process of talking to experts in the field (like yourself!) Would you be available for a 15m chat? I would love to connect!",
+    "Advait": "Hi, [firstname]! I'm the co-founder and CEO of Esger, an early-stage AI ESG/Sustainability Tech startup. We've raised $250k+ from renowned institutions like Cornell and ERA NYC. We're learning from experts in the supply chain and procurement industry (like you!) Would love to connect!"
 }
 
 ### Streamlit App ###
 
 # Create a title and text
 st.title("Automate Your Linkedin Outreach")
-st.text("Need to download the One Tap extension first")
-
+st.text(" 1) Need to download the One Tap extension first.")   
+st.text(" 2) Open a bunch of linkedin page.") 
+st.text(" 3) Click One Tap to collaspe them.") 
+st.text(" 4) Choose \"copy links to clipboard\"") 
+st.text(" 5) Then come here!") 
 
 st.markdown("## Step 1: Create a greet message")
 
@@ -67,14 +72,16 @@ if include_greet_message:
     user_input = st.text_input("")
 
     if user_input == "esger":
-        selected_option = st.selectbox('You are?', ('Others', 'Ken'))
+        selected_option = st.selectbox('You are?', ('Others', 'Aparajita','Ken', 'Advait'))
 
-        if selected_option == "Ken":
-            by_who = "Ken"
-            greet_message = greet_message_dict[by_who]
-        elif selected_option == "Others":
+  
+
+        if selected_option == "Others":
             by_who = st.text_input("Whats your name:")
             greet_message = st.text_area("(optional) Whats your greet message: Need to contain [firstname]")
+        else:
+            by_who = selected_option
+            greet_message = greet_message_dict[selected_option]
 
         # check if greet_message is empty
         if greet_message == "":
@@ -100,7 +107,6 @@ if st.button('Process the outreach data'):
     csv_buffer = StringIO()
     outreach_record_df.to_csv(csv_buffer, index=False)
     csv_str = csv_buffer.getvalue()
-
 
     # Add a button to download the CSV file
     st.download_button(
