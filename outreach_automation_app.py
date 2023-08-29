@@ -43,6 +43,10 @@ def create_outreach_record_df(input_data, include_greet_meesage=False, greet_mes
 greet_message = ""
 by_who = ""
 
+greet_message_dict = {
+    "Ken": "Hi, [firstname]! I am Ken, the co-founder at Esger, an NYC startup. We just raised $250k+ and support from top institutions like Cornell, Microsoft, and ERA. As we are using AI to tackle the heart of sustainability issues, the supply chain, I love to connect with experts in the field (like you!).",
+}
+
 ### Streamlit App ###
 
 # Create a title and text
@@ -67,7 +71,7 @@ if include_greet_message:
 
         if selected_option == "Ken":
             by_who = "Ken"
-            greet_message = "Hi, [firstname]! I am Ken, the co-founder at Esger, an NYC startup. We just raised $250k+ and support from top institutions like Cornell, Microsoft, and ERA. As we are using AI to tackle the heart of sustainability issues, the supply chain, I love to connect with experts in the field (like you!)."
+            greet_message = greet_message_dict[by_who]
         elif selected_option == "Others":
             by_who = st.text_input("Whats your name:")
             greet_message = st.text_area("(optional) Whats your greet message: Need to contain [firstname]")
